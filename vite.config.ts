@@ -7,5 +7,6 @@ export default defineConfig({
   plugins: [, tsconfigPaths(), react()],
   server: {
     host: true,
+    https: true,
   },
 });
