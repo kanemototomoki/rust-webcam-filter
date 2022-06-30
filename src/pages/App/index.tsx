@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import './App.css';
+import init, { greet } from '@wasm/pkg';
 
 function App() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -24,6 +25,7 @@ function App() {
     };
 
     initDevice();
+    init();
   }, []);
 
   // stream取得
@@ -86,6 +88,7 @@ function App() {
         gap: '10px',
       }}
     >
+      <button onClick={() => greet()}>greet</button>
       <div>
         <label>カメラ: </label>
         <select
