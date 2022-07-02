@@ -1,6 +1,6 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import './App.css';
-import init, { greet } from '@wasm/pkg';
+import init, { get_media_stream } from '@wasm/pkg';
 
 function App() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -78,6 +78,11 @@ function App() {
     }
   }, [stream?.id]);
 
+  const handleClick = useCallback(() => {
+    const a = get_media_stream(stream!);
+    console.log(a)
+  }, [stream]);
+  
   return (
     <div
       className='App'
@@ -88,7 +93,7 @@ function App() {
         gap: '10px',
       }}
     >
-      <button onClick={() => greet()}>greet</button>
+      <button onClick={handleClick}>getMediaStream</button>
       <div>
         <label>カメラ: </label>
         <select
