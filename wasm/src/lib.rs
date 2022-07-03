@@ -2,6 +2,7 @@ mod utils;
 
 use wasm_bindgen::prelude::*;
 use web_sys::MediaStream;
+use js_sys::*;
 
 // When the `wee_alloc` feature is enabled, use `wee_alloc` as the global
 // allocator.
@@ -42,9 +43,10 @@ fn using_a_macro() {
 }
 
 #[wasm_bindgen]
-pub fn get_media_stream(stream: MediaStream) -> MediaStream {
-    console_log!("{:?}", stream);
-    stream
+pub fn get_media_stream(stream: MediaStream) -> js_sys::Array {
+    let a = stream.get_video_tracks();
+    console_log!("{:?}", a);
+    a
 }
 
 
